@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ItemBlock from "../components/ItemBlock";
 
 export default function Home() {
   return (
@@ -14,33 +15,13 @@ export default function Home() {
       </div>
       <div className="max-w-5xl mx-auto my-8 p-4">
         <div className="grid grid-cols-3 gap-4">
-          <div className="border p-4">
-            <div className="w-full h-64 bg-gray-400 relative">
-              <img
-                className="w-full h-full object-cover absolute"
-                src="https://cdn.pixabay.com/photo/2023/06/03/13/44/bird-8037744_1280.jpg"
-              />
-            </div>
-            <p className="mt-2">鳥</p>
-          </div>
-          <div className="border p-4">
-            <div className="w-full h-64 bg-gray-400 relative">
-              <img
-                className="w-full h-full object-cover absolute"
-                src="https://cdn.pixabay.com/photo/2023/10/13/08/32/bird-8312424_1280.jpg"
-              />
-            </div>
-            <p className="mt-2">鳥</p>
-          </div>
-          <div className="border p-4">
-            <div className="w-full h-64 bg-gray-400 relative">
-              <img
-                className="w-full h-full object-cover absolute"
-                src="https://cdn.pixabay.com/photo/2023/05/11/15/14/honey-bee-7986647_1280.jpg"
-              />
-            </div>
-            <p className="mt-2">蜂</p>
-          </div>
+          <ItemBlock
+            id="1"
+            title="鳥"
+            description="鳥です"
+            price={100}
+            imgUrl="https://cdn.pixabay.com/photo/2017/02/07/16/47/kingfisher-2046453_1280.jpg"
+          />
         </div>
       </div>
     </main>
