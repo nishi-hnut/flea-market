@@ -23,7 +23,7 @@ export default function Home() {
     {
       id: "3",
       title: "炊飯器",
-      description: "炊飯器ですです",
+      description: "炊飯器です",
       imgUrl:
         "https://cdn.pixabay.com/photo/2023/05/11/15/14/honey-bee-7986647_1280.jpg",
       price: 300,
