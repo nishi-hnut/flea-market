@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import ItemBlock from "../components/ItemBlock";
 
 export default function Home() {
   const items = [
@@ -65,7 +64,19 @@ export default function Home() {
         </div>
       </div>
       <div className="max-w-5xl mx-auto my-8 p-4">
-        <ItemBlock items={items} />
+        <div className="grid grid-cols-3 gap-4">
+          {items.map((item) => (
+            <div className="border p-4">
+              <div key={item.id} className="w-full h-64 bg-gray-400 relative">
+                <img className="w-full h-full object-cover" src={item.imgUrl} />
+                <p className="absolute top-0 text-gray text-xl my-1 px-7 py-1 bg-gray-50 bg-opacity-10 rounded-r-full">
+                  ¥{item.price}
+                </p>
+              </div>
+              <p className="mt-2">{item.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
