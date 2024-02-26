@@ -7,8 +7,9 @@ export default function Home() {
       <div className="w-full bg-red-100">
         <div className="flex justify-between bg-blue-200 max-w-5xl mx-auto p-4">
           <h2 className="text-xl font-bold bg-yellow-200 p-2">メルカリ</h2>
-          <a className="bg-green-200 p-2">出品</a>
-          <Link href="/pages">出品</Link>
+          <Link href="/pages" className="bg-green-200 p-2">
+            出品
+          </Link>
         </div>
       </div>
       <div className="max-w-5xl mx-auto my-8 p-4">

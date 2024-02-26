@@ -1,8 +1,7 @@
-import Link from "next/link";
 import React from "react";
 
 const listting = () => {
-  return <div>こんにちは</div>;
+  return <main>こんにちは</main>;
 };
 
 export default listting;
