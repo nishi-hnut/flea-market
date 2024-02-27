@@ -1,7 +1,19 @@
+"use client";
+
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
-export default function Home() {
+type Item = {
+  id: string;
+  title: string;
+  description: string;
+  imgUrl: string;
+  price: 100;
+};
+
+export default function Home({ id, title, description, imgUrl, price }: Item) {
   const items = [
     {
       id: "1",
@@ -52,6 +64,19 @@ export default function Home() {
       price: 300,
     },
   ];
+
+  useEffect(() => {
+    async function fetchItems() {
+      try {
+        const response = await fetch("/api/items");
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    }
+    fetchItems();
+  }, []);
 
   return (
     <main>
