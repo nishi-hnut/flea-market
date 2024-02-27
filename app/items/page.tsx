@@ -1,19 +1,10 @@
 "use client";
 
-import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
 
-type Item = {
-  id: string;
-  title: string;
-  description: string;
-  imgUrl: string;
-  price: 100;
-};
-
-export default function Home({ id, title, description, imgUrl, price }: Item) {
+export default function Home() {
   const items = [
     {
       id: "1",
