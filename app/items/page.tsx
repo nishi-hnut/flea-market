@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type Item = {
@@ -42,18 +43,20 @@ export default function Home() {
       <div className="max-w-5xl mx-auto my-8 p-4">
         <div className="grid grid-cols-3 gap-4">
           {items.map((item) => (
-            <div className="border p-4">
-              <div key={item.id} className="w-full h-64 bg-gray-400 relative">
-                <img
-                  className="w-full h-full object-cover"
-                  src={item.image_url}
-                />
-                <p className="absolute top-0 text-gray text-xl my-1 px-7 py-1 bg-gray-50 bg-opacity-10 rounded-r-full">
-                  ¥{item.price}
-                </p>
+            <Link href={`/items/${item.id}`}>
+              <div className="border p-4">
+                <div key={item.id} className="w-full h-64 bg-gray-400 relative">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={item.image_url}
+                  />
+                  <p className="absolute top-0 text-gray text-xl my-1 px-7 py-1 bg-gray-50 bg-opacity-10 rounded-r-full">
+                    ¥{item.price}
+                  </p>
+                </div>
+                <p className="mt-2">{item.title}</p>
               </div>
-              <p className="mt-2">{item.title}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
