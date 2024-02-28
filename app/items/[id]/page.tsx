@@ -50,13 +50,16 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
       </div>
 
       <div key={item?.id} className="flex max-w-5xl mx-auto container mt-6">
-        <div className="w-3/5 h-3/5">
+        <div className="w-3/5 h-96">
           <img className="w-full h-full object-cover" src={item?.image_url} />
         </div>
 
         <div className="ml-11 w-2/5">
           <div className="text-2xl font-bold">{item?.title}</div>
-          <div className="text-xl mt-5">{item?.price}</div>
+          <div className="text-xl mt-5">
+            ¥{item?.price}
+            <span className="text-xs">(税込み)</span>
+          </div>
           <button className="bg-red-500 text-white w-full py-3 rounded mt-10 hover:bg-red-400">
             購入手続きへ
           </button>
