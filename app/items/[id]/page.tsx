@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type Item = {
@@ -12,12 +11,12 @@ type Item = {
   price: number;
 };
 
-const page = () => {
-  const [item, setItem] = useState<Item>();
-
-  const params = useParams();
+const page = ({ params }: { params: { id: string } }) => {
+  console.log(params);
   const id = params.id;
   console.log(id);
+
+  const [item, setItem] = useState<Item>();
 
   useEffect(() => {
     async function fetchItem() {
