@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BasicSlider from "./slider/page";
 
 type Item = {
   id: string;
@@ -64,6 +65,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <BasicSlider />
     </main>
   );
 }
