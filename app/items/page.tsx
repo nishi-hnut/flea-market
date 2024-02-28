@@ -18,9 +18,8 @@ export default function Home() {
     async function fetchItems() {
       try {
         const response = await fetch("/api/items");
-        const data = await response.json();
-        setItems(data.items);
-        console.log(data.items);
+        const dataJ = await response.json();
+        setItems(dataJ.items);
       } catch (error) {
         console.error("Fetch error:", error);
       }
