@@ -11,10 +11,8 @@ type Item = {
   price: number;
 };
 
-const page = ({ params }: { params: { id: string } }) => {
-  console.log(params);
+const DetailPage = ({ params }: { params: { id: string } }) => {
   const id = params.id;
-  console.log(id);
 
   const [item, setItem] = useState<Item>();
 
@@ -71,4 +69,4 @@ const page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default page;
+export default DetailPage;
