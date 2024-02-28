@@ -1,0 +1,20 @@
+{
+    "groups": [
+        {
+            "name": "NewJeans",
+            "image_url": "/newjeans.jpg"
+        },
+        {
+            "name": "LE SSERAFIM",
+            "image_url": "/lesserafim.jpeg"
+        },
+        {
+            "name": "(G)I-DLE",
+            "image_url": "/gidol.jpg"
+        },
+        {
+            "name": "TWICE",
+            "image_url": "/twice.jpg"
+        }
+    ]
+}
