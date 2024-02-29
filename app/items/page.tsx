@@ -37,7 +37,7 @@ export default function Home() {
             <li className="pr-5">ログイン</li>
             <li className="pr-5">新規登録</li>
             <li>
-              <Link href="/pages" className="p-2">
+              <Link href="/items/listing" className="p-2">
                 出品
               </Link>
             </li>
