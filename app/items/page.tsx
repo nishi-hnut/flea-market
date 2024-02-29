@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import BasicSlider from "./slider/page";
 
 type Item = {
   id: string;
@@ -18,9 +19,8 @@ export default function Home() {
     async function fetchItems() {
       try {
         const response = await fetch("/api/items");
-        const data = await response.json();
-        setItems(data.items);
-        console.log(data.items);
+        const dataJ = await response.json();
+        setItems(dataJ.items);
       } catch (error) {
         console.error("Fetch error:", error);
       }
@@ -37,7 +37,7 @@ export default function Home() {
             <li className="pr-5">ログイン</li>
             <li className="pr-5">新規登録</li>
             <li>
-              <Link href="/pages" className=" p-2">
+              <Link href="/pages" className="p-2">
                 出品
               </Link>
             </li>
@@ -65,6 +65,7 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <BasicSlider />
     </main>
   );
 }

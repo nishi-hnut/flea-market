@@ -1,7 +1,37 @@
-import Link from "next/link";
-import React, { useState } from "react";
+"use client";
 
-const page = () => {
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+
+type Item = {
+  id: string;
+  title: string;
+  description: string;
+  image_url: string;
+  price: number;
+};
+
+const DetailPage = ({ params }: { params: { id: string } }) => {
+  const id = params.id;
+
+  const [item, setItem] = useState<Item>();
+
+  useEffect(() => {
+    async function fetchItem() {
+      const url = `/api/item?id=${id}`;
+
+      try {
+        const response = await fetch(url);
+        const itemData = await response.json();
+        console.log(itemData);
+        setItem(itemData.item);
+      } catch (error) {
+        console.log("Fetch error:", error);
+      }
+    }
+    fetchItem();
+  }, []);
+
   return (
     <main>
       <div className="w-full border-b-2 sticky top-0 z-10 bg-white">
@@ -11,7 +41,7 @@ const page = () => {
             <li className="pr-5">ログイン</li>
             <li className="pr-5">新規登録</li>
             <li>
-              <Link href="/pages" className=" p-2">
+              <Link href="/pages" className="p-2">
                 出品
               </Link>
             </li>
@@ -19,29 +49,27 @@ const page = () => {
         </div>
       </div>
 
-      <div className="flex max-w-5xl mx-auto container mt-6">
-        <div className="w-3/5 h-3/5">
-          <img
-            className="w-full h-full object-cover"
-            src="https://cdn.pixabay.com/photo/2023/06/03/13/44/bird-8037744_1280.jpg"
-          />
+      <div key={item?.id} className="flex max-w-5xl mx-auto container mt-6">
+        <div className="w-3/5 h-96">
+          <img className="w-full h-full object-cover" src={item?.image_url} />
         </div>
 
         <div className="ml-11 w-2/5">
-          <div className="text-2xl font-bold">
-            日立 コンパクト ヘルシーシェフ 過熱水蒸気オーブンレンジ MRO-FS7
+          <div className="text-2xl font-bold">{item?.title}</div>
+          <div className="text-xl mt-5">
+            ¥{item?.price}
+            <span className="text-xs">(税込み)</span>
           </div>
-          <div className="text-xl mt-5">¥5,800</div>
           <button className="bg-red-500 text-white w-full py-3 rounded mt-10 hover:bg-red-400">
             購入手続きへ
           </button>
           <h2 className="text-2xl font-bold text-gray-700 mt-10">商品の説明</h2>
 
-          <h2 className="mt-5">レンジです</h2>
+          <h2 className="mt-5">{item?.description}</h2>
         </div>
       </div>
     </main>
   );
 };
 
-export default page;
+export default DetailPage;
