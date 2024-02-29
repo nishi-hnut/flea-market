@@ -11,7 +11,7 @@ type Item = {
   price: number;
 };
 
-const DetailPage = ({ params }: { params: { id: string } }) => {
+export function DetailPage({ params }: { params: { id: string } }) {
   const id = params.id;
 
   const [item, setItem] = useState<Item>();
@@ -70,6 +70,6 @@ const DetailPage = ({ params }: { params: { id: string } }) => {
       </div>
     </main>
   );
-};
+}
 
 export default DetailPage;
