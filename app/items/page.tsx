@@ -1,35 +1,35 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import BasicSlider from "./slider/page";
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import BasicSlider from "./slider/page"
 
 type Item = {
-  id: string;
-  title: string;
-  description: string;
-  image_url: string;
-  price: number;
-};
+  id: string
+  title: string
+  description: string
+  image_url: string
+  price: number
+}
 
 export default function Home() {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>([])
 
   useEffect(() => {
     async function fetchItems() {
       try {
-        const response = await fetch("/api/items");
-        const dataJ = await response.json();
-        setItems(dataJ.items);
+        const response = await fetch("/api/items")
+        const dataJ = await response.json()
+        setItems(dataJ.items)
       } catch (error) {
-        console.error("Fetch error:", error);
+        console.error("Fetch error:", error)
       }
     }
-    fetchItems();
-  }, []);
+    fetchItems()
+  }, [])
 
   return (
-    <main>
+    <main className="relative">
       <div className="w-full border-b-2 sticky top-0 z-10 bg-white">
         <div className="flex justify-between max-w-7xl mx-auto p-4 text-center">
           <h2 className="text-xl font-bold p-2">メルカリ</h2>
@@ -65,7 +65,9 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <BasicSlider />
+      <div className="fixed bottom-0 left-0 w-full">
+        <BasicSlider />
+      </div>
     </main>
-  );
+  )
 }

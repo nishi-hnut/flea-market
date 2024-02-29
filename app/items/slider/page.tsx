@@ -1,11 +1,11 @@
-import Image from "next/image";
+import Image from "next/image"
 
 // オプションをインポートする
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Autoplay, Navigation, Pagination } from "swiper/modules"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
 
 // publicフォルダの画像
 const images = [
@@ -13,7 +13,7 @@ const images = [
   "/mountain-8168060_640.jpg",
   "/mountain-8168060_640.jpg",
   "/mountain-8168060_640.jpg",
-];
+]
 
 export default function BasicSlider() {
   // ブレイクポイントに基づいて1つのスライドに表示するスライドの数を指定
@@ -26,7 +26,7 @@ export default function BasicSlider() {
       slidesPerView: 2,
       spaceBetween: 10,
     },
-  };
+  }
 
   return (
     <Swiper
@@ -40,7 +40,7 @@ export default function BasicSlider() {
         delay: 2500,
         disableOnInteraction: false,
       }} // スライド表示時間
-      navigation // ナビゲーション（左右の矢印）
+      // navigation // ナビゲーション（左右の矢印）
       pagination={{
         clickable: true,
       }} // ページネーション, クリックで対象のスライドに切り替わる
@@ -50,14 +50,14 @@ export default function BasicSlider() {
         <SwiperSlide key={index}>
           <Image
             src={src}
-            width={1920}
-            height={100}
+            width={1024}
+            height={10}
             alt="Slider Image"
-            sizes="(min-width: 1024px) 100vw, 60vw"
+            sizes=""
             className="object-cover h-10"
           />
         </SwiperSlide>
       ))}
     </Swiper>
-  );
+  )
 }
