@@ -41,6 +41,7 @@ export function Listing() {
     console.log("🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢", response)
 
     const data = await response.json()
+    setProduct({ description: "", title: "", price: 0 })
   }
 
   return (
@@ -133,12 +134,14 @@ export function Listing() {
                   className="mt-5 border rounded h-36 w-full bg-gray-100 flex-1 px-4 py-2"
                 />
               </div>
-              <button
-                type="submit"
-                className="bg-red-500 text-white w-full py-3 rounded mt-10 hover:bg-red-400"
-              >
-                出品する
-              </button>
+              <Link href={"/items"}>
+                <button
+                  type="submit"
+                  className="bg-red-500 text-white w-full py-3 rounded mt-10 hover:bg-red-400"
+                >
+                  出品する
+                </button>
+              </Link>
             </form>
           </div>
         </div>
