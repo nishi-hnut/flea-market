@@ -6,16 +6,16 @@ import { useState } from "react"
 type Text = {
   title: string
   description: string
-  price: string
-  image: string
+  price: number
+  // image: string
 }
 
 export function Listing() {
   const [product, setProduct] = useState<Text>({
     title: "",
     description: "",
-    price: "",
-    image: "",
+    price: 0,
+    // image: "",
   })
 
   const handleInputChange = (
@@ -25,9 +25,22 @@ export function Listing() {
     setProduct({ ...product, [field]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(product)
+
+    const response = await fetch("/api/create_item", {
+      method: "POST",
+      body: JSON.stringify({ ...product }),
+    })
+
+    if (!response.ok) {
+      throw new Error("😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇😇")
+    }
+
+    console.log("🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢🤢", response)
+
+    const data = await response.json()
   }
 
   return (
@@ -62,8 +75,8 @@ export function Listing() {
             </div>
             <input
               type="file"
-              value={product.image}
-              onChange={(e) => handleInputChange(e, "image")}
+              // value={product.image}
+              // onChange={(e) => handleInputChange(e, "image")}
               placeholder="画像追加"
               className="border p-1 text-center w-full mt-5"
             />
