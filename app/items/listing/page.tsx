@@ -5,48 +5,29 @@ import { useState } from "react"
 
 type Text = {
   title: string
-}
-
-type Description = {
   description: string
-}
-
-type Price = {
   price: string
-}
-
-type Image = {
   image: string
 }
 
 export function Listing() {
-  const [text, setText] = useState<string>("")
-  const [price, setPrice] = useState<string>("")
-  const [description, setDescription] = useState<string>("")
-  const [image, setImage] = useState<string>("")
+  const [product, setProduct] = useState<Text>({
+    title: "",
+    description: "",
+    price: "",
+    image: "",
+  })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value)
-  }
-  const handleInputChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPrice(e.target.value)
-  }
-  const handleInputChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(e.target.value)
-  }
-  const handleInputChange3 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImage(e.target.value)
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    field: keyof Text
+  ) => {
+    setProduct({ ...product, [field]: e.target.value })
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-  }
-
-  const buttonClick = () => {
-    console.log(text)
-    console.log(price)
-    console.log(description)
-    console.log(image)
+    console.log(product)
   }
 
   return (
@@ -67,7 +48,6 @@ export function Listing() {
           </ul>
         </div>
       </div>
-
       <div className="mt-10">
         <div className="flex max-w-5xl mx-auto justify-center">
           {/* 左側画像設置 */}
@@ -82,7 +62,8 @@ export function Listing() {
             </div>
             <input
               type="file"
-              onChange={handleInputChange3}
+              value={product.image}
+              onChange={(e) => handleInputChange(e, "image")}
               placeholder="画像追加"
               className="border p-1 text-center w-full mt-5"
             />
@@ -102,8 +83,8 @@ export function Listing() {
                 </h2>
                 <input
                   type="text"
-                  value={text}
-                  onChange={handleInputChange}
+                  value={product.title}
+                  onChange={(e) => handleInputChange(e, "title")}
                   placeholder="例）レンジ"
                   className="mt-5 border rounded h-12 w-full bg-gray-100 flex-1 px-4"
                 />
@@ -118,8 +99,8 @@ export function Listing() {
                 </h2>
                 <input
                   type="text"
-                  value={price}
-                  onChange={handleInputChange1}
+                  value={product.price}
+                  onChange={(e) => handleInputChange(e, "price")}
                   placeholder="例）1000"
                   className="mt-5 border rounded h-12 w-full bg-gray-100 flex-1 px-4"
                 />
@@ -133,16 +114,14 @@ export function Listing() {
                   商品説明
                 </h2>
                 <textarea
-                  type="text"
-                  value={description}
-                  onChange={handleInputChange2}
+                  value={product.description}
+                  onChange={(e) => handleInputChange(e, "description")}
                   placeholder="例）レンジです"
                   className="mt-5 border rounded h-36 w-full bg-gray-100 flex-1 px-4 py-2"
                 />
               </div>
               <button
                 type="submit"
-                onClick={buttonClick}
                 className="bg-red-500 text-white w-full py-3 rounded mt-10 hover:bg-red-400"
               >
                 出品する
