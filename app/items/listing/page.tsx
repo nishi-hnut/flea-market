@@ -1,21 +1,21 @@
 "use client"
 
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 type Text = {
   title: string
   description: string
-  price: string
-  image: string
+  price: number
 }
 
 export function Listing() {
+  const router = useRouter()
   const [product, setProduct] = useState<Text>({
     title: "",
     description: "",
-    price: "",
-    image: "",
+    price: 0,
   })
 
   const handleInputChange = (
@@ -25,9 +25,27 @@ export function Listing() {
     setProduct({ ...product, [field]: e.target.value })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log(product)
+
+    const linkHome = () => {
+      router.back()
+    }
+
+    if (!product.title || !product.description || !product.price) {
+      alert("すべて入力されていません")
+      return
+    } else {
+      alert("出品されました")
+      linkHome()
+    }
+
+    const response = await fetch("/api/create_item", {
+      method: "POST",
+      body: JSON.stringify({ ...product }),
+    })
+
+    setProduct({ description: "", title: "", price: Number(" ") })
   }
 
   return (
@@ -50,7 +68,6 @@ export function Listing() {
       </div>
       <div className="mt-10">
         <div className="flex max-w-5xl mx-auto justify-center">
-          {/* 左側画像設置 */}
           <div className="mr-48 w-2/5">
             <h1 className="text-xl font-bold">商品画像の設定</h1>
             <div className="mt-5">
@@ -62,15 +79,11 @@ export function Listing() {
             </div>
             <input
               type="file"
-              value={product.image}
-              onChange={(e) => handleInputChange(e, "image")}
               placeholder="画像追加"
               className="border p-1 text-center w-full mt-5"
             />
           </div>
-          {/* 左側画像設置ここまで */}
 
-          {/* 右側商品詳細 */}
           <div className="w-3/5">
             <h2 className="text-xl font-bold">商品情報</h2>
             <form onSubmit={handleSubmit}>
